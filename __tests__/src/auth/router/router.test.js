@@ -20,7 +20,7 @@ afterAll(async () => {
   await db.drop();
 });
 
-xdescribe('Auth Router', () => {
+describe('Auth Router', () => {
   it('Can create a new user', async () => {
     const response = await mockRequest.post('/signup').send(userData.testUser);
     const userObject = response.body;
@@ -60,7 +60,7 @@ xdescribe('Auth Router', () => {
     expect(bearerResponse.status).toBe(200);
   });
 
-  xit('basic fails with known user and wrong password ', async () => {
+  it('basic fails with known user and wrong password ', async () => {
     const response = await mockRequest.post('/signin').auth('admin', 'xyz');
     const { user, token } = response.body;
 
@@ -70,7 +70,7 @@ xdescribe('Auth Router', () => {
     expect(token).not.toBeDefined();
   });
 
-  xit('basic fails with unknown user', async () => {
+  it('basic fails with unknown user', async () => {
     const response = await mockRequest.post('/signin').auth('nobody', 'xyz');
     const { user, token } = response.body;
 
@@ -80,7 +80,7 @@ xdescribe('Auth Router', () => {
     expect(token).not.toBeDefined();
   });
 
-  xit('bearer fails with an invalid token', async () => {
+  it('bearer fails with an invalid token', async () => {
     // First, use basic to login to get a token
     const response = await mockRequest
       .get('/users')
@@ -103,7 +103,7 @@ xdescribe('Auth Router', () => {
     expect(response.body).toEqual(expect.anything());
   });
 
-  xit('Secret Route fails with invalid token', async () => {
+  it('Secret Route fails with invalid token', async () => {
     const response = await mockRequest
       .get('/secret')
       .set('Authorization', `bearer accessgranted`);
