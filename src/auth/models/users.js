@@ -1,6 +1,8 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.TOKEN_SECRET || 'adminpassword';
 
 const userSchema = (sequelize, DataTypes) => {
   const model = sequelize.define('User', {
@@ -9,7 +11,7 @@ const userSchema = (sequelize, DataTypes) => {
     token: {
       type: DataTypes.VIRTUAL,
       get() {
-        return jwt.sign({ username: this.username });
+        return jwt.sign({ username: this.username }, SECRET);
       },
     },
   });
