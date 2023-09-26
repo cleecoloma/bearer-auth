@@ -10,6 +10,7 @@ module.exports = async (req, res, next) => {
 
   let basic = req.headers.authorization.split(' ')[1];
   let [username, password] = base64.decode(basic).split(':');
+  console.log("here at basic middleware:", username, password);
 
   try {
     req.user = await users.authenticateBasic(username, password);

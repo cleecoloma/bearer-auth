@@ -19,7 +19,7 @@ afterAll(async () => {
   await db.drop();
 });
 
-xdescribe('Auth Middleware', () => {
+describe('Auth Middleware', () => {
   // Mock the express req/res/next that we need for each middleware call
   const req = {};
   const res = {
@@ -29,7 +29,7 @@ xdescribe('Auth Middleware', () => {
   };
   const next = jest.fn();
 
-  xdescribe('user authentication', () => {
+  describe('user authentication', () => {
     it('fails a login for a user (admin) with an incorrect token', () => {
       req.headers = {
         authorization: 'Bearer thisisabadtoken',
