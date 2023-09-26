@@ -19,7 +19,7 @@ afterAll(async () => {
   await db.drop();
 });
 
-xdescribe('Auth Middleware', () => {
+describe('Auth Middleware', () => {
   // admin:password: YWRtaW46cGFzc3dvcmQ=
   // admin:foo: YWRtaW46Zm9v
 

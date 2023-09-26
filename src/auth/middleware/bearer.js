@@ -12,7 +12,8 @@ module.exports = async (req, res, next) => {
     const validUser = await users.authenticateToken(token);
 
     req.user = validUser;
-    // req.token = validUser.token;
+    // req.body.token = validUser.token;
+    next();
   } catch (e) {
     console.error(e);
     res.status(403).send('Invalid Login');

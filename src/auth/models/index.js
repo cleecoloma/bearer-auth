@@ -17,8 +17,9 @@ const DATABASE_CONFIG =
             rejectUnauthorized: false,
           },
         },
+        logging: false,
       }
-    : {};
+    : { logging: false };
 
 const sequelize = new Sequelize(DATABASE_URL, DATABASE_CONFIG);
 

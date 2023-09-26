@@ -4,7 +4,7 @@ process.env.SECRET = 'TEST_SECRET';
 
 const { handleSecret } = require('../../../../../src/auth/router/handlers.js');
 
-xdescribe('testing the users route handler', () => {
+describe('testing the users route handler', () => {
   const res = {
     send: jest.fn(() => res),
     status: jest.fn(() => res),
