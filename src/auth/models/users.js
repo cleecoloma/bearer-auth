@@ -11,28 +11,28 @@ const userSchema = (sequelize, DataTypes) => {
     password: { type: DataTypes.STRING, allowNull: false },
 
     // One time use token
-    token: {
-      type: DataTypes.VIRTUAL,
-      get() {
-        if (usedTokens.includes(this.username)) {
-          return null;
-        }
-        const token = jwt.sign({ username: this.username }, SECRET);
-        usedTokens.push(this.username);
-        return token;
-      },
-    },
-    // 15 min timed tokens
     // token: {
     //   type: DataTypes.VIRTUAL,
     //   get() {
-    //     const expirationTime = Math.floor(Date.now() / 1000) + 900;
-    //     return jwt.sign(
-    //       { username: this.username, exp: expirationTime },
-    //       SECRET
-    //     );
+    //     if (usedTokens.includes(this.username)) {
+    //       return null;
+    //     }
+    //     const token = jwt.sign({ username: this.username }, SECRET);
+    //     usedTokens.push(this.username);
+    //     return token;
     //   },
     // },
+    // 15 min timed tokens
+    token: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        const expirationTime = Math.floor(Date.now() / 1000) + 900;
+        return jwt.sign(
+          { username: this.username, exp: expirationTime },
+          SECRET
+        );
+      },
+    },
   });
 
   model.beforeCreate(async (user) => {
