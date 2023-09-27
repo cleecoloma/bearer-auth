@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     const validUser = await users.authenticateToken(token);
 
     req.user = validUser;
-    // req.body.token = validUser.token;
+    req.token = validUser.token;
     next();
   } catch (e) {
     console.error(e);
