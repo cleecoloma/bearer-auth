@@ -1,6 +1,6 @@
 # Bearer Auth
 
->  **Authentication System Phase 1:** Deploy an Express server that implements Basic Authentication, with signup and signin capabilities, using a Postgres database for storage.
+>  **Authentication Server Phase 2: Token (Bearer) Authentication** Auth-server is able to allow a user to create an account as well as to handle Basic Authentication (user provides a username + password). When a “good” login happens, the user is considered to be “authenticated” and our auth-server generates a JWT signed “Token” which is returned to the application
 
 ## Installation
 
@@ -10,7 +10,7 @@
 
 ```text
 PORT=3001
-SQL_CONNECTION_STRING={SQL_database_link}
+DATABASE_URL={SQL_database_link}
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ json: {
 }
 ```
 
-Signin reques:
+Signin request:
 ```text
 method: POST
 route: /signin
@@ -35,11 +35,29 @@ headers: Authentication Basic {
 }
 ```
 
+Get Users request:
+```text
+method: GET
+route: /users
+headers: Authentication Bearer {
+  TOKEN
+}
+```
+
+Secret request:
+```text
+method: GET
+route: /secret
+headers: Authentication Bearer {
+  TOKEN
+}
+```
+
 ## UML Diagram
-![Basic Auth UML Diagram](./public/images/401-class-06-lab.png)
+![Bearer Auth UML Diagram](./public/images/401-class-07-lab.png)
 
 ## PR link
-[PR link Class 06](https://github.com/cleecoloma/basic-auth/pull/1)
+[PR link Class 07](https://github.com/cleecoloma/bearer-auth/pull/1)
 
 ## Contributors
 > Chester Lee Coloma
